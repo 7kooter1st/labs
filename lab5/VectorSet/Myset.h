@@ -10,12 +10,10 @@ private:
 
 public:
     MySet() {}
-    ~MySet() {}
-
     bool is_element(T value);
     int q_find(T value);
 
-    MySet& operator+=(const MySet& s) {
+    MySet& operator+=(MySet& s) {
         for (int i = 0; i < s.GetSize(); i++) {
             this->add_element(s[i]);
         }
