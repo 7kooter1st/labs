@@ -5,7 +5,24 @@
 
 template<typename T>
 class MyVector {
+private:
+	template<typename T>
+	class node
+	{
+	public:
+		node* pNext;
+		T data;
+
+		node(T data = T(), node* pNext = nullptr) {
+			this->data = data;
+			this->pNext = pNext;
+		}
+	};
+	int size;
+	int max_size;
+	node<T> *pdata;
 public:
+	MyVector() : size(0), max_size(8), pdata(nullptr) {}
 	MyVector(MyVector* ptr);
 	~MyVector();
 
@@ -19,23 +36,6 @@ public:
 	void sort();
 	void resize(bool n);
 	T GetData();
-private:
-	template<typename T>
-	class node
-	{
-	public:
-		node* pNext;
-		T data;
-
-		node(T data = t(), node* pNext = nullptr) {
-			this->data = data;
-			this->pNext = pNext;
-		}
-	};
-	int size;
-	int max_size = 8;
-	node<T> *pdata;
-
 };
 
 

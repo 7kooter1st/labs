@@ -1,15 +1,15 @@
 cmake_minimum_required(VERSION 3.23)
 
-set(project "form")
+set(project "VectorSet")
 project(${project})
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(${project}_SOURCES
-        Myset.cpp MyVector.cpp)
-
 set(${project}_HEADERS
         Myset.h MyVector.h)
+
+set(${project}_SOURCES
+        Myset.cpp MyVector.cpp)
 
 set(${project}_SOURCE_LIST
         ${${project}_SOURCES}

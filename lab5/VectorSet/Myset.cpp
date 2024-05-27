@@ -17,49 +17,6 @@ bool MySet<T>::is_element(T value) {
 }
 
 template<typename T>
-void MySet<T>::operator+=(Myset& s) {
-	for (int i = 0; i < s->GetSize(); i++) {
-		this->add_element(s[i]);
-	}
-	int i = 0;
-	int j = 0;
-	while (i < this->GetSize()) {
-		if (this[i] == ans[j + 1]) {
-			this[i].delete_element(i);
-			j--;
-		}
-		j++;
-		i++;
-	}
-};
-
-template<typename T>
-void MySet<T>::operator-=(Myset& s) {
-	for (int i = 0; i < s->GetSize(); i++) {
-		for (int j = 0; j < this->GetSize(); j++) {
-			if (this[j] == s[i]) {
-				this->delete_element[j];
-				break;
-			}
-		}
-	}
-};
-
-template<typename T>
-void MySet<T>::operator*=(Myset& s) {
-	MySet<T>* ans;
-	for (int i = 0; i < this.GetSize(); i++) {
-		for (int j = 0; j < s.GetSize; j++) {
-			if (this[i] == s[j]) {
-				ans->add_element(s[i]);
-				break;
-			}
-		}
-	}
-	this = ans;
-};
-
-template<typename T>
 MySet<T> operator+(MySet<T>& s1, MySet<T>& s2) {
 	MySet<T>* ans;
 	for (int i = 0; i < s1.GetSize(); i++) {

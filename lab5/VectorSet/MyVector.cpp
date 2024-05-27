@@ -2,6 +2,7 @@
 
 template<typename T>
 MyVector<T>::MyVector(MyVector* ptr = nullptr) {
+
 	for (int i = 0; i < max_size; i++) {
 		this->pdata->pNext = new node<T>(ptr->pdata->data);
 		size++;
@@ -97,10 +98,22 @@ MyVector<T>& MyVector<T>::operator=(const MyVector<T>& other) {
 	return *this;
 }
 
-//template<typename T>
-//void MyVector<T>::operator=(MyVector<T>& f){
-//	
-//}
+template<typename T>
+MyVector& MyVector<T>::operator=(const MyVector& other) {
+	if (this == &other) {
+		return *this;
+	}
+
+	while (head != nullptr) {
+		node<T>* temp = head;
+		head = head->pNext;
+		delete temp;
+	}
+
+	copy_from(other);
+
+	return *this;
+}
 
 
 
