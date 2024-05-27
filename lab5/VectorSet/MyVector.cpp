@@ -7,7 +7,7 @@
 //		size++;
 //	}
 //}
-//
+
 //template<typename T>
 //MyVector<T>::~MyVector() {
 //	delete[] pdata;

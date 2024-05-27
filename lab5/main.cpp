@@ -13,9 +13,9 @@ int main() {
     b.add_element(12);
     b.add_element(7);
     MySet<int> c(a);
-    c += b;
-    MySet<int> sum;
-    sum = a + b;
+    //c += b;
+    //MySet<int> sum;
+    //sum = a + b;
 
     return 0;
 }

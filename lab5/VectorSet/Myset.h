@@ -9,7 +9,6 @@ class MySet : public MyVector<T> {
 private:
 
 public:
-    MySet() {}
     bool is_element(T value);
     int q_find(T value);
 
