@@ -14,7 +14,6 @@ public:
     Polynomial(const Term& term) { terms.add_element(term); }
 
     void addTerm(const Term& term) {
-        // Add term logic, combining like terms if necessary
         for (int i = 0; i < terms.GetSize(); ++i) {
             if (term.getExponent() == terms[i].getExponent()) {
                 terms[i] = terms[i] + term;

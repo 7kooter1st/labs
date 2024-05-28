@@ -3,7 +3,7 @@ project(lab7)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(lab7 main.cpp)
+add_executable(lab7 main.cpp "worker/worker.h" "worker/worker.cpp" "worker/Vector.h")
 
 IF (NOT WIN32)
 target_link_libraries(lab7 m)
