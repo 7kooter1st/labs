@@ -12,19 +12,30 @@ private:
     int exponent;
 
 public:
-    Term(int coef = 0, int exp = 0) : coefficient(coef), exponent(exp) {}
+    Term() : coefficient(0), exponent(0) {}
+    Term(int coef, int exp) : coefficient(coef), exponent(exp) {}
 
     int getCoefficient() const { return coefficient; }
     int getExponent() const { return exponent; }
 
     Term operator+(const Term& other) const {
         if (exponent != other.exponent)
-            throw std::invalid_argument("Exponents must be the same to add terms.");
+            throw std::invalid_argument("степени должны быть одинаковыми");
         return Term(coefficient + other.coefficient, exponent);
     }
     int pow(int a, int b);
     friend std::ostream& operator<<(std::ostream& out, const Term& term);
     friend std::istream& operator>>(std::istream& in, Term& term);
+
+    Term operator=(const Term& other) const {
+        return Term(other.exponent, other.coefficient);
+    }
+    bool operator==(const Term& other) const {
+        if (exponent == other.exponent) {
+            return true;
+        }
+        return false;
+    }
 };
 
 int Term::pow(int a, int b) {

@@ -11,10 +11,13 @@ private:
     public:
         Node* pNext;
         U data;
-
-        Node(U data = U(), Node* pNext = nullptr) {
-            this->data = data;
-            this->pNext = pNext;
+        Node() {
+            this->data = NULL;
+            this->pNext = nullptr;
+        }
+        Node(U data_, Node* pNext_ = nullptr) {
+            data = data_;
+            pNext = pNext_;
         }
     };
 
@@ -97,16 +100,14 @@ public:
         size--;
     }
     const MyVector& operator=(const MyVector& other) {
-        if (this == &other) return *this; // Не делать ничего, если это один и тот же объект
+        if (this == &other) return *this;
 
-        // Удалите старые узлы (если есть)
         while (head != nullptr) {
             Node<T>* temp = head;
             head = head->pNext;
             delete temp;
         }
 
-        // Скопируйте данные из `other`
         size = other.size;
         max_size = other.max_size;
         if (other.head == nullptr) {
@@ -122,7 +123,7 @@ public:
                 otherCurrent = otherCurrent->pNext;
             }
         }
-        return *this; // Возвращаем ссылку на текущий объект
+        return *this;
     }
 };
 

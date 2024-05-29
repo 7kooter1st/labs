@@ -20,21 +20,21 @@ private:
 
     int size;
     int max_size;
-    Node<T>* head;
+    Node<T>* pdata;
 
 public:
-    MyVector() : size(0), max_size(8), head(nullptr) {}
+    MyVector() : size(0), max_size(8), pdata(nullptr) {}
 
     MyVector(const MyVector& other) {
         size = other.size;
         max_size = other.max_size;
-        if (other.head == nullptr) {
-            head = nullptr;
+        if (other.pdata == nullptr) {
+            pdata = nullptr;
         }
         else {
-            head = new Node<T>(other.head->data);
-            Node<T>* current = head;
-            Node<T>* otherCurrent = other.head->pNext;
+            pdata = new Node<T>(other.pdata->data);
+            Node<T>* current = pdata;
+            Node<T>* otherCurrent = other.pdata->pNext;
             while (otherCurrent != nullptr) {
                 current->pNext = new Node<T>(otherCurrent->data);
                 current = current->pNext;
@@ -44,19 +44,19 @@ public:
     }
 
     ~MyVector() {
-        while (head != nullptr) {
-            Node<T>* temp = head;
-            head = head->pNext;
+        while (pdata != nullptr) {
+            Node<T>* temp = pdata;
+            pdata = pdata->pNext;
             delete temp;
         }
     }
 
     void add_element(T data) {
         if (size == 0) {
-            head = new Node<T>(data);
+            pdata = new Node<T>(data);
         }
         else {
-            Node<T>* current = head;
+            Node<T>* current = pdata;
             while (current->pNext != nullptr) {
                 current = current->pNext;
             }
@@ -69,7 +69,7 @@ public:
 
     const T& operator[](const int index) const {
         int counter = 0;
-        Node<T>* current = head;
+        Node<T>* current = pdata;
         while (current != nullptr) {
             if (counter == index) return current->data;
             current = current->pNext;
@@ -83,13 +83,13 @@ public:
         this->~MyVector();
         size = other.size;
         max_size = other.max_size;
-        if (other.head == nullptr) {
-            head = nullptr;
+        if (other.pdata == nullptr) {
+            pdata = nullptr;
         }
         else {
-            head = new Node<T>(other.head->data);
-            Node<T>* current = head;
-            Node<T>* otherCurrent = other.head->pNext;
+            pdata = new Node<T>(other.pdata->data);
+            Node<T>* current = pdata;
+            Node<T>* otherCurrent = other.pdata->pNext;
             while (otherCurrent != nullptr) {
                 current->pNext = new Node<T>(otherCurrent->data);
                 current = current->pNext;
@@ -102,12 +102,12 @@ public:
     void delete_element(int n) {
         if (n < 0 || n >= size) return;
         if (n == 0) {
-            Node<T>* temp = head;
-            head = head->pNext;
+            Node<T>* temp = pdata;
+            pdata = pdata->pNext;
             delete temp;
         }
         else {
-            Node<T>* current = head;
+            Node<T>* current = pdata;
             for (int i = 0; i < n - 1; ++i) {
                 current = current->pNext;
             }

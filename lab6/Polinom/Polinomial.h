@@ -14,12 +14,6 @@ public:
     Polynomial(const Term& term) { terms.add_element(term); }
 
     void addTerm(const Term& term) {
-        for (int i = 0; i < terms.GetSize(); ++i) {
-            if (term.getExponent() == terms[i].getExponent()) {
-                terms[i] = terms[i] + term;
-                return;
-            }
-        }
         terms.add_element(term);
     }
 
@@ -28,6 +22,18 @@ public:
         Polynomial result = *this;
         for (int i = 0; i < other.terms.GetSize(); ++i) {
             result.addTerm(other.terms[i]);
+        }
+        return result;
+    }
+
+    Polynomial operator-(const Polynomial& other) const {
+        Polynomial result;
+        for (int i = 0; i < other.terms.GetSize(); ++i) {
+            for (int j = 0; j < (*this).terms.GetSize(); j++) {
+                if (other.terms[i] == (*this).terms[j]) {
+                    result.addTerm(other.terms[i]);
+                }
+            }
         }
         return result;
     }
@@ -47,7 +53,7 @@ std::istream& operator>>(std::istream& in, Polynomial& poly) {
     int coef, exp;
     char input[100];
     while (in.getline(input, 100)) {
-        if (sscanf(input, "%d x^%d", &coef, &exp) == 2) {
+        if (sscanf(input, "%d x^%d", &coef, &exp) == 1) {
             poly.addTerm(Term(coef, exp));
         }
         else if (sscanf(input, "%d x", &coef) == 1) {
