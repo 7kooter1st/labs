@@ -27,8 +27,10 @@ public:
     friend std::ostream& operator<<(std::ostream& out, const Term& term);
     friend std::istream& operator>>(std::istream& in, Term& term);
 
-    Term operator=(const Term& other) const {
-        return Term(other.exponent, other.coefficient);
+    Term operator=(const Term& other) {
+        coefficient = other.coefficient;
+        exponent = other.exponent;
+        return *this;
     }
     bool operator==(const Term& other) const {
         if (exponent == other.exponent) {

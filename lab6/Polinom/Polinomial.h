@@ -50,20 +50,57 @@ std::ostream& operator<<(std::ostream& out, const Polynomial& poly) {
 }
 
 std::istream& operator>>(std::istream& in, Polynomial& poly) {
-    int coef, exp;
-    char input[100];
-    while (in.getline(input, 100)) {
-        if (sscanf(input, "%d x^%d", &coef, &exp) == 1) {
-            poly.addTerm(Term(coef, exp));
+    char ch;
+    int coef = 0, exp = 0, sign = 1;
+    while (in.get(ch)) {
+        if (isspace(ch)) {
+            continue;
         }
-        else if (sscanf(input, "%d x", &coef) == 1) {
-            poly.addTerm(Term(coef, 1));
+        else if (isdigit(ch)) {
+            coef = coef * 10 + (ch - '0');
         }
-        else if (sscanf(input, "%d", &coef) == 1) {
-            poly.addTerm(Term(coef, 0));
+        else if (ch == '+' || ch == '-') {
+            if (coef != 0) {
+                poly.addTerm(Term(coef * sign, exp));
+                coef = 0;
+                exp = 0;
+            }
+            sign = (ch == '+') ? 1 : -1;
+        }
+        else if (ch == 'x') {
+            if (coef == 0) {
+                coef = 1;
+            }
+            if (in.peek() == '^') {
+                in.get(ch);
+                in.get(ch);
+                exp = (ch - '0');
+                while (in.peek() >= '0' && in.peek() <= '9') {
+                    in.get(ch);
+                    exp = exp * 10 + (ch - '0');
+                }
+            }
+            else {
+                exp = 1;
+            }
+        }
+        else {
+            break;
         }
     }
+
+    if (coef != 0) {
+        poly.addTerm(Term(coef * sign, exp));
+    }
+
     return in;
 }
+
+//in.getline(input, 1000);
+//char stroka[1000];
+//for (int i = 0; i < strlen(input); i++) {
+//    if (input[i] != " ")
+//        str
+//}
 
 #endif

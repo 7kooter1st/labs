@@ -15,7 +15,7 @@ int main() {
 
     std::cout << "Полином 1:" << poly1 << std::endl;
 
-    std::cout << "Введите второй полином:";
+    std::cout << "Введите второй полином:\n";
     std::cin >> poly2;
     std::cout << "Полином2 2: " << poly2 << std::endl;
 
