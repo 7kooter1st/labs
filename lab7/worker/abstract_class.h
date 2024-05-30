@@ -15,15 +15,17 @@ public:
         age(age_),
         experience(experience_) {
         strcpy(name, name_);
-        std::cout << "Worker()" << std::endl;
     }
 
     virtual ~Worker() {
         delete[] name;
-        std::cout << "~Worker()" << std::endl;
     }
 
     virtual void show() const = 0;
+    
+    virtual void clear() const = 0;
+
+    virtual void remove() const = 0;
 };
 
 #endif

@@ -4,7 +4,7 @@
 
 void print(const MyVector<Worker*>& container) {
     for (int i = 0; i < container.GetSize(); i++) {
-        std::cout << "Index " << i << ": ";
+        std::cout << "Индекс " << i << ": ";
         container[i]->show();
     }
 }
@@ -13,11 +13,14 @@ void remove(MyVector<Worker*>& container, int index) {
     if (index < 0 || index >= container.GetSize()) {
         return;
     }
-
     delete container[index];
     container.delete_element(index);
 }
 
 void clear(MyVector<Worker*>& container) {
+    for (int i = 0; i < container.GetSize(); i++) {
+        delete container[i];
+    }
     container.clear();
 }
+

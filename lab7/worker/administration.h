@@ -4,26 +4,24 @@
 #include "abstract_class.h"
 
 class Administration : public Worker {
+private:
+    char* department;
 public:
-    Administration(const char* name_, int age_, int experience_, const char* department) :
+    Administration(const char* name_, int age_, int experience_, const char* department_) :
         Worker(name_, age_, experience_),
-        department(new char[strlen(department) + 1]) {
-        strcpy(department, department);
-        std::cout << "Administration()" << std::endl;
+        department(new char[strlen(department_) + 1]) {
+        strcpy(department, department_);
     }
 
     ~Administration() {
         delete[] department;
-        std::cout << "~Administration()" << std::endl;
     }
 
-    void show() const override {
-        std::cout << "Administration: ";
-        std::cout << name << ", age: " << age << ", experience: " << experience << ", department: " << department << std::endl;
-    }
+    void show() const override;
 
-private:
-    char* department;
+    void clear() const override;
+
+    void remove() const override;
 };
 
 #endif

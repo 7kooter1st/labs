@@ -4,26 +4,31 @@
 #include "abstract_class.h"
 
 class Engineer : public Worker {
+private:
+    char* specialization;
 public:
-    Engineer(const char* name_, int age_, int experience_, const char* specialization) :
-        Worker(name_, age_, experience_),
-        specialization(new char[strlen(specialization) + 1]) {
-        strcpy(specialization, specialization);
-        std::cout << "Engineer()" << std::endl;
+    Engineer(const char* name_, int age_, int experience_, const char* specialization_) :
+        Worker(name_, age_, experience_) {
+        if (specialization_ != nullptr) {
+            specialization = new char[strlen(specialization_) + 1];
+            strcpy(specialization, specialization_);
+        }
+        else {
+            specialization = nullptr;
+        }
     }
 
     ~Engineer() {
         delete[] specialization;
-        std::cout << "~Engineer()" << std::endl;
     }
 
-    void show() const override {
-        std::cout << "Engineer: ";
-        std::cout << name << ", age: " << age << ", experience: " << experience << ", specialization: " << specialization << std::endl;
-    }
+    void show() const override;
 
-private:
-    char* specialization;
+    void clear() const override;
+
+    void remove() const override;
+
+
 };
 
 #endif

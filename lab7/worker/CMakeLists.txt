@@ -9,7 +9,7 @@ set(${project}_HEADERS
         Vector.h abstract_class.h administration.h enginer.h hr.h)
 
 set(${project}_SOURCES
-        functions.cpp)
+        functions.cpp administration.cpp enginer.cpp)
 
 
 set(${project}_SOURCE_LIST

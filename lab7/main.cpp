@@ -4,11 +4,12 @@
 #include "worker/hr.h"
 #include "worker/enginer.h"
 #include "worker/administration.h"
+#include "worker/functions.cpp"
 
 int main() {
+    setlocale(LC_ALL, "Russian");
     MyVector<Worker*> container;
 
-    // Demonstration mode
     container.add_element(new HR("Иван Иванов", 35, 10, 50));
     container.add_element(new Engineer("Пётр петров", 40, 15, "Programming"));
     container.add_element(new Administration("Мария Сидорова", 28, 5, "HR department"));
@@ -17,7 +18,7 @@ int main() {
     print(container);
     std::cout << std::endl;
 
-    remove(container, 1);
+    remove(container, 2);
     std::cout << "удаление элемента с индеком 1" << std::endl;
     print(container);
     std::cout << std::endl;
@@ -27,16 +28,15 @@ int main() {
     print(container);
     std::cout << std::endl;
 
-    // Interactive mode
     char choice;
     do {
         std::cout << "меню" << std::endl;
         std::cout << "1. Добавить элемент" << std::endl;
-        std::cout << "2. Print elements" << std::endl;
-        std::cout << "3. Remove element" << std::endl;
-        std::cout << "4. Clear container" << std::endl;
-        std::cout << "0. Exit" << std::endl;
-        std::cout << "Enter your choice: ";
+        std::cout << "2. Вывести элементы" << std::endl;
+        std::cout << "3. Удалить элемент" << std::endl;
+        std::cout << "4. Очистить Контейнер" << std::endl;
+        std::cout << "0. Выход" << std::endl;
+        std::cout << "Выберите действие:\n";
         std::cin >> choice;
 
         switch (choice) {
@@ -44,41 +44,41 @@ int main() {
             char name[100], specialization[100], department[100];
             int age, experience, num_employees;
 
-            std::cout << "Enter name: ";
+            std::cout << "введите имя\n";
             std::cin.ignore();
             std::cin.getline(name, 100);
-            std::cout << "Enter age: ";
+            std::cout << "Введите возраст\n";
             std::cin >> age;
-            std::cout << "Enter experience: ";
+            std::cout << "Введите опыт\n";
             std::cin >> experience;
 
             char type;
-            std::cout << "Choose employee type (K - HR, I - Engineer, A - Administration): ";
+            std::cout << "Выберите тип сотрудника (К – HR, I – Инженер, A – Администрация):\n";
             std::cin >> type;
 
             switch (type) {
             case 'K': {
-                std::cout << "Enter number of employees: ";
+                std::cout << "Введите количество сотрудников:\n";
                 std::cin >> num_employees;
                 container.add_element(new HR(name, age, experience, num_employees));
                 break;
             }
             case 'I': {
-                std::cout << "Enter specialization: ";
+                std::cout << "Введите специализацию:\n";
                 std::cin.ignore();
                 std::cin.getline(specialization, 100);
                 container.add_element(new Engineer(name, age, experience, specialization));
                 break;
             }
             case 'A': {
-                std::cout << "Enter department: ";
+                std::cout << "Введите отдел:\n";
                 std::cin.ignore();
                 std::cin.getline(department, 100);
                 container.add_element(new Administration(name, age, experience, department));
                 break;
             }
             default:
-                std::cout << "Incorrect employee type!" << std::endl;
+                std::cout << "Неправильный тип сотрудника!" << std::endl;
             }
             break;
         }
@@ -88,7 +88,7 @@ int main() {
         }
         case '3': {
             int index;
-            std::cout << "Enter index of element to remove: ";
+            std::cout << "Введите индекс элемента, который нужно удалить:\n";
             std::cin >> index;
             remove(container, index);
             break;
@@ -98,10 +98,10 @@ int main() {
             break;
         }
         case '0':
-            std::cout << "Exiting program." << std::endl;
+            std::cout << "Выход из программы."<< std::endl;
             break;
         default:
-            std::cout << "Incorrect choice!" << std::endl;
+            std::cout << "Неправильный выбор!" << std::endl;
         }
     } while (choice != '0');
 

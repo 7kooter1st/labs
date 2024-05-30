@@ -25,6 +25,15 @@ private:
 public:
     MyVector() : size(0), max_size(8), head(nullptr) {}
 
+    void clear() {
+        while (head != nullptr) {
+            Node<T>* temp = head;
+            head = head->pNext;
+            delete temp;
+        }
+        size = 0;
+    }
+
     MyVector(const MyVector& other) {
         size = other.size;
         max_size = other.max_size;
